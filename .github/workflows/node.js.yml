@@ -25,3 +25,23 @@ jobs:
       run: npm run test:unit
     - name: display softuni username
       run: echo "Murtadoc"
+
+  ui_test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    - name: install npm dependencies
+      run: npm install
+    - name: install playwright dependencies
+      run: npx playwright install
+    - name: start the app
+      run: npm start &
+    - name: run ui tests
+      run: npm run test:ui   
